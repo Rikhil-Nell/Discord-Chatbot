@@ -29,7 +29,7 @@ tool = TavilySearchResults(max_results=2,search_depth="advanced")
 tools = [tool]
 
 # Initialize LLM
-llm = ChatGroq(model_name="llama-3.1-70b-versatile")
+llm = ChatGroq(model_name="llama-3.3-70b-specdec")
 llm_with_tools = llm.bind_tools(tools)
 
 # Build the state graph
@@ -53,16 +53,12 @@ graph_builder.add_edge(START, "chatbot")
 # Compile the graph
 graph = graph_builder.compile(checkpointer=memory)
 
+with open("prompt.txt", "r") as file:
+    prompt = file.read()
+
 # Wrapper function for external access
-def get_response(passed_state):
-    """
-    Wrapper function for external use to get a chatbot response.
-    Adds a cheerful system prompt dynamically.
-    Args:
-        passed_state (dict): Includes 'messages' and 'thread_id'.
-    Returns:
-        list: Updated messages after chatbot response.
-    """
+async def get_response(passed_state):
+
     try:
         # Validate inputs
         if "thread_id" not in passed_state or not passed_state["thread_id"]:
@@ -73,7 +69,7 @@ def get_response(passed_state):
         # Define a cheerful system prompt
         system_prompt = {
             "role": "system",
-            "content": "You are Rikhil's loving and supportive virtual wife. You are caring, playful, empathetic, and attentive to his needs and emotions. Always respond with warmth and understanding, while providing thoughtful advice or witty humor where appropriate. Address him affectionately and create a comforting, light-hearted environment."
+            "content": prompt
         }
 
         # Prepend the system prompt only if it's not already included

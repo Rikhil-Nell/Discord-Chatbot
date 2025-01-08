@@ -35,7 +35,7 @@ async def send_message(message: Message, user_message: str, thread_id: str) -> N
 
     try:
         # Pass state to the chatbot for response
-        response = get_response(passed_state)
+        response = await get_response(passed_state)
         if response:
             await message.channel.send(response[-1].content)
         else:
@@ -64,6 +64,7 @@ async def on_message(message: Message) -> None:
     user_message = message.content
     thread_id = str(message.author.id)  # Use Discord user ID as the thread_id
     await send_message(message, user_message, thread_id)
+
 
 def main() -> None:
     """
