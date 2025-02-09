@@ -1,10 +1,10 @@
-# Discord Bot: [Your Bot's Name]
+# Discord Bot: Pixy
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Discord](https://img.shields.io/discord/1234567890?color=blue&label=Join%20Our%20Server&logo=discord&logoColor=white)](https://discord.gg/yourinvite)
+[![Discord](https://img.shields.io/discord/1234567890?color=blue&label=Join%20Our%20Server&logo=discord&logoColor=white)](https://discord.gg/WuKMQXM7Ft)
 
 ## Overview
-**[Your Bot's Name]** is an advanced, feature-packed Discord bot designed to provide immersive and dynamic interactions with:
+**Pixy** is an advanced, feature-packed Discord bot designed to provide immersive and dynamic interactions with:
 
 - **Memory:** Remembers conversations to ensure context-aware replies.
 - **Personas:** Offers customizable personalities to fit different user preferences.
@@ -85,7 +85,7 @@
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
 ### Reporting Issues
-Found a bug or have a feature request? Open an issue in the [GitHub Issues](https://github.com/yourusername/your-bot-repo/issues) section.
+Found a bug or have a feature request? Open an issue in the [GitHub Issues](https://github.com/Rikhil-Nell/Discord-Chatbot/issues) section.
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
@@ -97,6 +97,6 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 ### Join Us
-Need help or want to showcase your setup? Join our [Discord Server](https://discord.gg/yourinvite) and connect with other users!
+Need help or want to showcase your setup? Join our [Discord Server](https://discord.gg/WuKMQXM7Ft) and connect with other users!
 
 Happy Botting! 🎉
