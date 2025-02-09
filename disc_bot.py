@@ -1,6 +1,6 @@
 from discord import Intents, Client, Message
 from dotenv import load_dotenv
-from bot import get_response
+from base_chatbot import Pixy, Deps, get_memory, append_message
 import os
 
 # Load environment variables
@@ -15,7 +15,7 @@ intents = Intents.default()
 intents.message_content = True
 client = Client(intents=intents)
 
-async def send_message(message: Message, user_message: str, thread_id: str) -> None:
+async def send_message(message: Message, deps: Deps, user_message: str, user_id: str) -> None:
     """
     Handles sending a message to the Discord channel.
     Args:
@@ -26,20 +26,12 @@ async def send_message(message: Message, user_message: str, thread_id: str) -> N
     if not user_message:
         print("(Message was empty because intents might not be enabled.)")
         return
-
-    # Prepare state
-    passed_state = {
-        "messages": [{"role": "user", "content": user_message}],
-        "thread_id": thread_id,
-    }
-
     try:
-        # Pass state to the chatbot for response
-        response = await get_response(passed_state)
-        if response:
-            await message.channel.send(response[-1].content)
-        else:
-            await message.channel.send("Sorry, I couldn't generate a response.")
+        memory = await get_memory(deps=deps, user_id=user_id, limit=30)
+        response = await Pixy.run(deps=deps, user_prompt=user_message, message_history=memory)
+        await message.channel.send(response.data) if response else message.channel.send("Sorry, I couldn't process that.")
+        await append_message(deps=deps, user_id=user_id,role= "bot", content=response.data)
+
     except Exception as e:
         print(f"Error sending message: {e}")
         await message.channel.send("An error occurred while processing your request.")
@@ -62,10 +54,9 @@ async def on_message(message: Message) -> None:
         return  # Ignore the bot's own messages
 
     user_message = message.content
-    thread_id = str(message.author.id)  # Use Discord user ID as the thread_id
-    await send_message(message, user_message, thread_id)
-
-
+    user_id = str(message.author.id)  # Use Discord user ID as the thread_id
+    await append_message(deps=Deps, user_id=user_id, role= "user", content=user_message)
+    await send_message(deps=Deps, message=message, user_message=user_message, user_id=user_id)
 
 def main() -> None:
     """
