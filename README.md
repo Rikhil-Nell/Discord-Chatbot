@@ -1,7 +1,7 @@
 # Discord Bot: Pixy
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Discord](https://img.shields.io/discord/1234567890?color=blue&label=Join%20Our%20Server&logo=discord&logoColor=white)](https://discord.gg/WuKMQXM7Ft)
+[![Discord](https://img.shields.io/discord/1316072404631425054?color=5865F2&label=Discord&logo=discord&logoColor=white)](https://discord.gg/WuKMQXM7Ft)
 
 ## Overview
 **Pixy** is an advanced, feature-packed Discord bot designed to provide immersive and dynamic interactions with:

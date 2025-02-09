@@ -28,7 +28,7 @@ async def send_message(message: Message, deps: Deps, user_message: str, user_id:
         return
     try:
         memory = await get_memory(deps=deps, user_id=user_id, limit=30)
-        response = await Pixy.run(deps=deps, user_prompt=user_message, message_history=memory)
+        response = await Pixy.run(deps=deps, user_prompt=user_message, message_history=memory,user_limit=1500)
         await message.channel.send(response.data) if response else message.channel.send("Sorry, I couldn't process that.")
         await append_message(deps=deps, user_id=user_id,role= "bot", content=response.data)
 
