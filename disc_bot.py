@@ -66,6 +66,7 @@ async def on_message(message: Message) -> None:
     await send_message(message, user_message, thread_id)
 
 
+
 def main() -> None:
     """
     Main function to start the Discord bot.
