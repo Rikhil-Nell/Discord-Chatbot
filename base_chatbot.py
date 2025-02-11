@@ -30,15 +30,13 @@ with open ("prompt.txt", "r") as file:
 Pixy = Agent(
     model = model,
     system_prompt= prompt,
-    deps_type= Deps,
-    retries= ModelRetry(3)
+    deps_type= Deps
 )
 
 # Define the message handler
 async def message_handler(response: List[Any]) -> List[ModelMessage]:
 
     messages: List[ModelMessage] = []
-    
     for item in response:
         role = item['role']
         content = item['content']
