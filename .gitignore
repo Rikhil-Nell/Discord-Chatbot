@@ -2,3 +2,7 @@
 __pycache__
 prompt.txt
 myenv
+.dockerignore
+Dockerfile
+images
+tempCodeRunnerFile.py
